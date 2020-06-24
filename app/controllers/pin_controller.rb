@@ -1,4 +1,5 @@
 class PinController < ApplicationController
+    
     get '/pins' do
         @pins = Pin.all 
         erb :index
