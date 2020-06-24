@@ -1,10 +1,10 @@
-class Pins < ActiveRecord::Migration
+class CreatePins < ActiveRecord::Migration
   def change
     create_table :pins do |t|
       t.string :artist
-      t.string :owner_id
+      t.integer :owner_id
       t.string :series
-      t.integer :price
+      t.float :price
     end 
   end
 end

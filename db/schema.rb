@@ -13,17 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20200623215850) do
 
-  create_table "owner", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string "name"
-    t.string "pins"
     t.string "series"
+    t.string "password_digest"
   end
 
   create_table "pins", force: :cascade do |t|
     t.string  "artist"
-    t.string  "owner_id"
+    t.integer "owner_id"
     t.string  "series"
-    t.integer "price"
+    t.float   "price"
   end
 
 end
