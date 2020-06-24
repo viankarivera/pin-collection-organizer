@@ -2,7 +2,7 @@ class PinController < ApplicationController
     
     get '/pins' do
         @pins = Pin.all 
-        erb :index
+        erb :"pins/index"
     end 
     
     post '/pins' do 
@@ -12,7 +12,7 @@ class PinController < ApplicationController
     end 
     
     get '/pins/new' do 
-        erb :new 
+        erb :"/pins/new" 
     end 
     
     get '/pins/:id' do 

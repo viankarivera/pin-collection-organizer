@@ -1,6 +1,6 @@
 require './config/environment'
-require './controllers/pin_controller'
-require './controllers/user_controller'
+#require './controllers/pin_controller'
+#require './controllers/user_controller'
 
 if ActiveRecord::Migrator.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'

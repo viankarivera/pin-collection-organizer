@@ -13,8 +13,8 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
-    color: #333;
+    background-color: rgb(137, 129, 209);
+    color: rgb(71, 9, 112);
     font-family: Sans-Serif;
     line-height: 18px;
   }
@@ -33,6 +33,7 @@
   h1 {
     font-size: 36px;
     line-height: 54px;
+    text-align: center;
   }
 
   h2 {
@@ -40,6 +41,8 @@
     font-size: 24px;
     line-height: 36px;
     margin-bottom: 16px;
+    text-align: center;
+    color: rgb(71, 9, 112);
   }
 
   h3 {
