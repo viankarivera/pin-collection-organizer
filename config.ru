@@ -7,5 +7,5 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 run ApplicationController
-use OwnerController 
+use UserController 
 use PinController 
