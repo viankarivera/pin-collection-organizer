@@ -11,11 +11,15 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end 
 
+  post '/sign_up' do 
+    "Welcome"
+  end 
+
   post '/login' do
     @owner = Owner.find_by(:username => params[:username])
     if @owner != nil && @owner.password == params[:password]
       session[:owner_id] = @owner.id
-      redirect to '/pins'
+      redirect to '/account'
     end
     erb :error
   end

@@ -1,4 +1,20 @@
-"Welcome back, #{name}. Here is your current collection:"
+#"Welcome back, #{name}. Here is your current collection:"
 #current pins etc.
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <link rel="stylesheet" href="/stylesheets/main.css" />  
+  </head>
+  <body id="page-top">
+    <% if Helpers.is_logged_in?(session) %>
+      <h1>Welcome <%= Helpers.current_user(session).username %></h1>
+      <h3>Your Balance: <%= Helpers.current_user(session).balance %></h3>
+    
+      <h4><a href="/logout">Log Out</a></h4>
+    <% end %>
+  </body>
+</html>
 
 #don't know how to write this out though....

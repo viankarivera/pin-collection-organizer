@@ -1,7 +1,7 @@
 class OwnerController < ApplicationController
 
     post '/login' do
-        @owner = Owner.find_by(:username => params[:username])
+      @owner = Owner.find_by(:username => params[:username])
         if @owner != nil && @owner.password == params[:password]
           session[:user_id] = @owner.id
           redirect to '/account'

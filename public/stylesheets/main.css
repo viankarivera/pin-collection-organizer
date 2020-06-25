@@ -61,6 +61,7 @@
   .content {
     float: left;
     width: 60%; /* 480px / 800px */
+
   }
 
   .sidebar {
@@ -115,4 +116,5 @@
     font-size: 18px;
     line-height: 24px;
   }
+
 }
