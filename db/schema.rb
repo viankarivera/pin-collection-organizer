@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20200623215850) do
 
   create_table "owners", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
     t.string "series"
     t.string "password_digest"
   end
