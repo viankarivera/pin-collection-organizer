@@ -1,8 +1,10 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
   configure do
+    use Rack::Flash
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
@@ -10,8 +12,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
-   
+    if logged_in?
+      redirect "/users/#{current_user.slug}"
+    else
+      erb :welcome
+    end 
   end 
 
   helpers
@@ -20,31 +25,7 @@ class ApplicationController < Sinatra::Base
     end 
 
     def current_user
-      Owner.find_by_id(session[:id])
+      User.find_by_id(session[:id])
     end 
   
-  get '/sign_up' do
-    "Hello"
-  end 
-
-  post '/sign_up' do 
-    owner = Owner.new(:username => params[:username], :password => params[:password])
-
-    if owner.save 
-      session[:owner_id] = @owner.id
-      redirect to '/account'
-
-    else
-      redirect "/failure"
-    end  
-  end 
-  
-  get '/login' do 
-    "Hello"
-  end 
-
-  post '/login' do
-   "Hello"
-  end 
-
 end
