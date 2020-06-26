@@ -14,16 +14,21 @@
 ActiveRecord::Schema.define(version: 20200623215850) do
 
   create_table "pins", force: :cascade do |t|
-    t.string  "artist"
-    t.integer "user_id"
-    t.string  "series"
-    t.float   "price"
+    t.string   "name"
+    t.string   "artist"
+    t.integer  "user_id"
+    t.string   "series"
+    t.float    "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user", force: :cascade do |t|
-    t.string "username"
-    t.string "series"
-    t.string "password_digest"
+    t.string   "username"
+    t.string   "series"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

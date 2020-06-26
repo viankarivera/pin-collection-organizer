@@ -1,0 +1,22 @@
+<h4>Hey <%=current_user.username%>!</h4>
+    <p>Your Collection:</p><br>
+
+    <% @pin.each do |pin| %>
+
+    <div class="pin collection">
+        Name: <%= pin.name %><br>
+        Artist: <%= pin.artist %><br>
+        Series: <%= pin.series %><br>
+        Price: <%= pin.price %><br>
+
+        <form action ="/pin/<%= pin.id%>/delete" method="POST">
+            <input type="hidden" id="hidden" name="method" value="DELETE">
+            <button type="submit" value="delete">Trade Pin</button><br>
+        </form>
+    </div>
+
+    <% end %>
+
+    
+
+        
