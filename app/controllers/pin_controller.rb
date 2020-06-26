@@ -1,7 +1,7 @@
 class PinController < ApplicationController
 
     get '/pin/new' do 
-        erb :pin/new  
+        erb :'pin/new'  
     end 
 
     
