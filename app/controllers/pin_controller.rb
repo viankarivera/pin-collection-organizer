@@ -1,11 +1,7 @@
 class PinController < ApplicationController
 
     get '/pin/new' do 
-        if logged_in?
-            erb :'/pin/new'
-        else
-            redirect '/welcome'
-        end  
+        erb :pin/new  
     end 
 
     
@@ -14,7 +10,7 @@ class PinController < ApplicationController
             @pin = Pin.find_by_id(params[:id])
             erb :'/pins/index'
         else
-            redirect '/welcome'
+            redirect '/index'
         end  
     end 
     
@@ -32,7 +28,7 @@ class PinController < ApplicationController
             end 
             erb :'/pins/index'
         else 
-            redirect '/welcome'
+            redirect '/index'
         end 
     end 
 

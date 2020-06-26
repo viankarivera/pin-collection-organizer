@@ -15,8 +15,12 @@ class ApplicationController < Sinatra::Base
     if logged_in?
       redirect "/users/#{current_user.slug}"
     else
-      erb :welcome
+      erb :index
     end 
+  end 
+
+  post '/login' do 
+    erb :"pin/pin"
   end 
 
   helpers
