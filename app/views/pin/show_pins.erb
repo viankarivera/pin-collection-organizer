@@ -1,0 +1,8 @@
+<p><%= @pin.content %>
+
+<form method="POST" action="/pins/<%=@pin.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Pin">
+</form>
+
+<a href="/pins<%=@pin.id%>/edit">Edit Pin</a>
