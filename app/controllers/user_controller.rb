@@ -2,7 +2,6 @@ class UserController < ApplicationController
 
   get '/signup' do 
     if !logged_in?
-      flash[:signup_error] = "First Time? Please Sign Up."
       erb :'user/signup'
     else
       erb :'/index'
@@ -12,37 +11,22 @@ class UserController < ApplicationController
 
   get '/login' do 
     if logged_in?
-      redirect "/user"
-      erb :'/user/user'
+      redirect "/user/#{@user.id}"
+      erb :"user/user"
     else 
       erb :'user/login'
     end 
-  end 
-
+  end
+  
   post '/signup' do 
     @user = User.new(:username => params[:username])
     @user.save
     session[:id] = @user.id 
-    redirect '/pin'
+    redirect "/user/#{@user.id}"
   end 
 
-  post '/login' do 
-    @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
-      session[:id] = @user.id 
-      redirect "/pin"
-    else
-      redirect '/user/login'
-    end 
-  end 
-
-  get '/logout' do 
-    if logged_in?
-      session.clear
-      redirect '/login'
-    else 
-      redirect '/'
-    end 
+  get '/user/show' do 
+    erb :show
   end 
 end 
 

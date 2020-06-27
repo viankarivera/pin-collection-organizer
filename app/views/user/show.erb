@@ -1,6 +1,5 @@
 #"Welcome back, #{name}. Here is your current collection:"
 #current pins etc.
-<h4>Hey <%=current_user.username%>!</h4>
     <p>Your Collection:</p><br>
 
     <% @pin.each do |pin| %>
@@ -16,6 +15,8 @@
             <button type="submit" value="delete">Trade Pin</button><br>
         </form>
     </div>
+
+    <a href="/new">Add a New Pin.</a>
 
     <% end %>
 
