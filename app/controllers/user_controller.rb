@@ -14,21 +14,23 @@ class UserController < ApplicationController
   end 
 
   post '/signup' do
-    user = User.create(params[:user])
-    if user.save
-      session[:user_id] = user.id
-      redirect to '/show'
-    else
-      erb :'user/signup'
-    end 
+    erb :'pins/new'
+    #user = User.create(params[:user])
+    #if user.save
+     # session[:user_id] = user.id
+      #redirect to '/show'
+    #else
+     # erb :'user/signup'
+    #end 
   end 
 
   get '/login' do 
     erb :'user/login'
   end
 
-  post '/login' do 
-    user = User.find_by_username(params[:user][:username])
+  post '/login' do
+    erb :'pins/pins'
+    #user = User.find_by_username(params[:user][:username])
     #if user && user.authenticate(params[:user][:password])
      # session[:user_id] = user.id 
       #redirect to '/show'

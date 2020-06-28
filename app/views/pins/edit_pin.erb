@@ -1,13 +1,13 @@
-<form action="/pin/<%@pin.id%>" method="POST">
+<form action="/pins/edit_pin" method="POST">
 <input type="hidden" id="hidden" name="method" value="PATCH">
     <h4>Edit Pins:</h4><br>
     <label>Name</label>
-        <input type="text" name="name" placeholder="<%= @pin.name if @pin.name %>"><br>
+        <input type="text" name="name"><br>
     <label>Artist</label>
-        <input type="text" name="artist" placeholder="<%= @pin.artist if @pin.artist %>"><br>
+        <input type="text" name="artist"><br>
     <label>Series</label>
-        <input type="text" name="series" placeholder="<%= @pin.series if @pin.series %>"><br>
+        <input type="text" name="series"><br>
     <label>Price</label>
-        <input type="number" name="price" placeholder="<%= @pin.price if @pin.price %>"><br>
+        <input type="number" name="price"><br>
     <button type="submit">Finish Edit</button>
 </form>
