@@ -16,7 +16,9 @@ class PinController < ApplicationController
 
     post '/pins/edit_pin' do 
        erb :'pins/edit_pin'
-    end 
+    
+    end
+
 
     get '/pins/new' do 
         erb :"/pins/new"
