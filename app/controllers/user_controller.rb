@@ -1,3 +1,4 @@
+
 require './config/environment'
 
 class UserController < ApplicationController
@@ -14,14 +15,14 @@ class UserController < ApplicationController
   end 
 
   post '/signup' do
-    erb :'pins/new'
-    #user = User.create(params[:user])
-    #if user.save
-     # session[:user_id] = user.id
-      #redirect to '/show'
-    #else
-     # erb :'user/signup'
-    #end 
+    #erb :'pins/new'
+    user = User.new(params[:user])
+    if user.save
+     session[:user_id] = user.id
+      redirect to '/pins/new'
+    else
+      erb :'user/signup'
+    end 
   end 
 
   get '/login' do 

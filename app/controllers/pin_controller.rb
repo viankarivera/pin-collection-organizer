@@ -6,7 +6,15 @@ class PinController < ApplicationController
         erb :'pins/pins'
     end 
 
+    get '/pins/new' do 
+        erb :"/pins/new"
+    end 
+
     post '/pins' do 
+        erb :'pins/pins'
+    end 
+
+    get '/pins/:id' do 
         erb :'pins/pins'
     end 
     
@@ -14,19 +22,31 @@ class PinController < ApplicationController
         erb :'pins/edit_pin'
     end 
 
-    post '/pins/edit_pin' do 
-       erb :'pins/edit_pin'
-    
-    end
-
-
-    get '/pins/new' do 
-        erb :"/pins/new"
+    put '/pins/:id' do 
+        erb :'pins/edit_pin'
     end 
 
     post '/pins/new' do 
         erb :"pins/pins"
     end 
+
+
+
+    post '/pins/edit_pin' do 
+       erb :'pins/edit_pin'
+    
+    end
+
+    delete '/pins/:id' do 
+        @pins = Pin.find(params[:id])
+        user = @pins.user
+        if user == current_user
+        @pins.destroy
+        redirect to "/pins/pins"
+        else
+        redirect to "/index"
+        end
+    end
 
     
 
