@@ -1,32 +1,22 @@
+require './config/environment'
+
 class PinController < ApplicationController
 
-    get '/pin' do 
-        if logged_in?
-            @pin = Pin.all 
-            erb :'pin/pins'
-        else 
-            redirect to '/login'
-        end 
+    get '/pins' do 
+        @pins = Pin.all 
+        erb :'pins/pins'
     end 
 
-    get '/pin/new' do 
-        if logged_in?
-            erb :'pin/new'
-        else
-            redirect to '/login'
-        end 
-    end 
-
-    post '/pin' do 
+    post '/pins' do 
         if logged_in?
             if params[:content] == ""
-                redirect to "/pin/new"
+                redirect to "/pins/new"
             else 
-                @pin = current_user.pins.build(content: params[:content])
-                if @pin.save
-                    redirect to "/pin/#{@pin.id}"
+                @pins = current_user.pins.build(content: params[:content])
+                if @pins.save
+                    redirect to "/pins/#{@pins.id}"
                 else
-                    redirect to "/pin/new"
+                    redirect to "/pins/new"
                 end 
             end 
         else 
@@ -34,30 +24,30 @@ class PinController < ApplicationController
         end 
     end 
 
-    get '/pin/:id/edit_pin' do 
+    get '/pins/:id/edit_pin' do 
         if logged_in?
-            @pin = Pin.find_by_id(params[:id])
-            if @pin && @pin.user == current_user 
-                erb :'pin/edit_pin'
+            @pins = Pin.find_by_id(params[:id])
+            if @pins && @pins.user == current_user 
+                erb :'pins/edit_pin'
             else 
-                redirect to '/pin'
+                redirect to '/pins'
             end 
         else 
             redirect to '/login'
         end 
     end 
 
-    patch '/pin/:id' do 
+    patch '/pins/:id' do 
         if logged_in?
             if params[:content] == ""
-                redirect to "/pin/#{params[:id]}/edit_pin"
+                redirect to "/pins/#{params[:id]}/edit_pin"
             else
-                @pin = Pin.find_by_id(params[:id])
-                if @pin && @pin.user == current_user 
-                    if @pin.update(content: params[:content])
-                        redirect to "/pin/#{@pin.id}"
+                @pins = Pin.find_by_id(params[:id])
+                if @pins && @pins.user == current_user 
+                    if @pins.update(content: params[:content])
+                        redirect to "/pins/#{@pin.id}"
                     else
-                        redirect to "/pin/#{@pin.id}/edit_pin"
+                        redirect to "/pins/#{@pin.id}/edit_pin"
                     end 
                 else
                     redirect to '/pins'
@@ -68,22 +58,25 @@ class PinController < ApplicationController
         end 
     end 
     
-    delete '/pin/:id/delete' do 
-        if logged_in?
-            @pin = Pin.find_by_id(params[:id])
-            if @pin && @pin.user == current_user
-            @pin.delete
-            end 
-            redirect to '/pins'
+    delete '/pins/:id' do 
+        #if logged_in?
+        @pins = Pin.find(params[:id])
+        user = @pins.user 
+        if user == current_user 
+            @pins.destroy
+            redirect to "/pins"
         else
-            redirect to '/login'
-        end 
+            redirect to "/pins"  
+        end   
     end 
 
 
-    #private 
-    #def pin_params
-     #   {artist: params[:artist], user_id: params[:user_id], series: params[:series], price: params[:price]}
-    #end 
+    private 
+    def pin_params
+        {artist: params[:artist],
+        user_id: params[:user_id],
+        series: params[:series],
+        price: params[:price]}
+    end 
 
 end 
