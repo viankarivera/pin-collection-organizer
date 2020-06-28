@@ -8,20 +8,15 @@ class PinController < ApplicationController
     end 
 
     post '/pins' do 
-        if logged_in?
-            if params[:content] == ""
-                redirect to "/pins/new"
-            else 
-                @pins = current_user.pins.build(content: params[:content])
-                if @pins.save
-                    redirect to "/pins/#{@pins.id}"
-                else
-                    redirect to "/pins/new"
-                end 
-            end 
-        else 
-            redirect to '/login'
-        end 
+        erb :'pins'
+    end 
+
+    get '/pins/new' do 
+        erb :"/pins/new"
+    end 
+
+    post '/pins/new' do 
+        erb :"/pins/show_pins"
     end 
 
     get '/pins/:id/edit_pin' do 

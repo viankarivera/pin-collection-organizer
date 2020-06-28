@@ -37,6 +37,14 @@ class UserController < ApplicationController
     #end 
   end 
 
+    get '/user/show' do 
+      erb :"/user/show"
+    end 
+
+  post '/user/show' do 
+      erb :"/user/show"
+  end 
+
   get '/logout' do
     if session[:user_id] != nil
       session.destroy
