@@ -14,14 +14,14 @@ class ApplicationController < Sinatra::Base
       erb :index
   end 
 
-  helpers do 
-    def logged_in?
-      !!session[:user_id]
+  post '/login' do 
+    @user = User.find_by(:username => params[:username])
+    if @user !=nil && @user.password == params[:password]
+      session[:user_id] = @user.id 
+      redirect to '/pins/pins'
     end 
-
-    def current_user
-      @current_user ||= User.find_by_id(session[:user_id])
-    end 
+    erb :index
   end 
+
   
 end
