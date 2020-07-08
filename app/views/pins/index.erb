@@ -1,6 +1,8 @@
-<p>Your Collection:</p><br>
-
 <div class="pin collection">
+<p>Pins:</p><br>
+
+<% @pins.each do |pin| %>
+
     Name: <%= pin.name %><br>
     Artist: <%= pin.artist %><br>
     Series: <%= pin.series %><br>

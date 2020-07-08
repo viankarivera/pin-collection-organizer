@@ -9,6 +9,10 @@ class UserController < ApplicationController
     set :views, 'app/views'
   end
 
+  get '/' do
+    erb :index
+  end 
+
   get '/signup' do 
     erb :'user/signup'
 
@@ -16,13 +20,13 @@ class UserController < ApplicationController
 
   post '/signup' do
     #erb :'pins/new'
-    #user = User.new(params[:user])
-    #if user.save
-     #session[:user_id] = user.id
-      #redirect to '/pins/new'
-    #else
-      erb :'pins/new'
-    #end 
+    user = User.new(params[:user])
+    if user.save
+      session[:user_id] = user.id
+      redirect to '/pins/new'
+    else
+      erb :'user/signup'
+    end 
   end 
 
   get '/login' do 
@@ -30,12 +34,14 @@ class UserController < ApplicationController
   end
 
   post '/login' do
-    erb :'pins/pins'
-    #@user = User.find_by(:username => params[:username])
-    #if @user !=nill && @user.password == params[:password]
-     # session[:user_id] = @user.id 
-      #redirect to 'pins/pins'
-    #end 
+    #erb :'pins/pins'
+    @user = User.find_by(:username => params[:username])
+    if @user !=nill && @user.password == params[:password]
+      session[:user_id] = @user.id 
+      redirect to 'pins/pins'
+    else
+      erb :'user/signup'
+    end 
   end 
 
     get '/user/show' do 

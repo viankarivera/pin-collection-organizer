@@ -2,7 +2,7 @@ require './config/environment'
 
 class PinController < ApplicationController
 
-    get '/pins' do  
+    get '/pins' do 
         erb :'pins/pins'
     end 
 
