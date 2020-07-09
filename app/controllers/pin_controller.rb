@@ -3,61 +3,52 @@ require './config/environment'
 class PinController < ApplicationController
 
     get '/pins' do 
-        erb :'pins/pins'
+        erb :'pins/index'
     end 
 
     get '/pins/new' do 
-        erb :"/pins/new"
+        if is_logged_in?
+            erb :"/pins/new"
+        else 
+            redirect to '/login'
+        end 
+         
     end 
 
-    post '/pins' do 
-        erb :'pins/pins'
+    post '/pins' do
+        @pin = Pin.create(params)
+        @pin.user_id=current_user.id
+        @pin.save
+
+
+        #responsible for creating pins
+        redirect to "/users/#{current_user.id}"
     end 
 
     get '/pins/:id' do 
         erb :'pins/pins'
     end 
     
-    get '/pins/edit_pin' do
+    get '/pins/edit_pin' do #this needs to be restful and it is not yet
         erb :'pins/edit_pin'
     end 
 
-    put '/pins/:id' do 
+    put '/pins/:id' do  #needs to redirect and udate or change database
         erb :'pins/edit_pin'
     end 
 
-    post '/pins/new' do 
-        erb :"pins/pins"
-    end 
-
-
-
-    post '/pins/edit_pin' do 
-       erb :'pins/edit_pin'
-    
-    end
 
     delete '/pins/:id' do 
-        @pins = Pin.find(params[:id])
-        user = @pins.user
+        @pin = Pin.find(params[:id])
+        user = @pin.user
         if user == current_user
-        @pins.destroy
-        redirect to "/pins/pins"
+        @pin.destroy
+        redirect to "/pins"
         else
-        redirect to "/index"
+        redirect to "/pins"
         end
     end
 
     
-
-
-
-    private 
-    def pin_params
-        {artist: params[:artist],
-        user_id: params[:user_id],
-        series: params[:series],
-        price: params[:price]}
-    end 
 
 end 

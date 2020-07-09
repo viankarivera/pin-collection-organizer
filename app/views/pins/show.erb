@@ -1,11 +1,12 @@
-<h4>Your Collection</h4><br>
+<h4><%= @pin.name %></h4><br>
     Name: <%= @pin.name %><br>
     Artist: <%= @pin.artist %><br>
     Series: <%= @pin.series %><br>
     Price: <%= @pin.price %><br>
 
-    <form action ="/pins/edit_pin" method="POST">
-        <input type="hidden" id="hidden" name="method" value="DELETE">
-        <button type="submit" value="delete">Trade Pin</button><br>
-    </form>
+
+    <form action ="/pin/<%= @pin.id%>/delete" method="POST">
+            <input type="hidden" id="hidden" name="_method" value="DELETE">
+            <button type="submit" value="delete">Trade Pin</button><br>
+        </form>
     <a href="/pins/new"><button type="submit" value="submit">Add a New Pin</button></a><br>

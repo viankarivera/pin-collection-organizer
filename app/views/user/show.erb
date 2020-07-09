@@ -1,18 +1,19 @@
-#"Welcome back, #{name}. Here is your current collection:"
-#current pins etc.
-    <p>Your Collection:</p><br>
+
+    <h4><%= @user.username %>'s Collection:</h4><br>
+
+    <% @pins.each do |pin| %>
+        Name: <%= pin.name %><br> #make a link to pins showpage - then that pages needs a link to edit and delete
+        Artist: <%= pin.artist %><br>
+
+    <% end %>
 
     
 
-        <form action ="/pin/<%= pin.id%>/delete" method="POST">
-            <input type="hidden" id="hidden" name="method" value="DELETE">
-            <button type="submit" value="delete">Trade Pin</button><br>
-        </form>
+    
     </div>
 
     <a href="/new">Add a New Pin.</a>
 
-    <% end %>
 
 
 #don't know how to write this out though....
