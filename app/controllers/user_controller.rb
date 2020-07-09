@@ -34,9 +34,10 @@ class UserController < ApplicationController
   end
 
   post '/login' do
+    #binding.pry
     #erb :'pins/pins'
-    @user = User.find_by(:username => params[:username])
-    if @user !=nil && @user.password == params[:password]
+    @user = User.find_by_username(params[:user][:username])
+    if @user !=nil && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id 
       redirect to '/pins'
     else
@@ -45,6 +46,7 @@ class UserController < ApplicationController
   end 
 
     get '/users/:id' do
+      #binding.pry
       @user = User.find_by_id(params[:id])
       @pins = @user.pins
       #

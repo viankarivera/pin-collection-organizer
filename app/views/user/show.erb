@@ -3,7 +3,7 @@
     <h4><%= @user.username %>'s Collection:</h4><br>
 
     <% @pins.each do |pin| %>
-        Name: <%= pin.name %>  <a href="/pins/show">See Pin</a><br>
+        Name: <%= pin.name %>  <a href="/pins/<%= pin.id %>">See Pin</a><br>
         Artist: <%= pin.artist %><br>
 
     <% end %>

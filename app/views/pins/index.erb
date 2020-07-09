@@ -1,5 +1,5 @@
 <div class="pin collection">
-<p>Pins:</p><br>
+<h4>Pins:</h4><br>
 
 <% @pins.each do |pin| %>
 
@@ -12,9 +12,9 @@
         <input type="hidden" id="hidden" name="method" value="DELETE">
         <button type="submit" value="delete">Trade Pin</button><br>
     </form>
-</div>
 
-<a href="/new">Add a New Pin.</a><br>
-<a href="/pins<%=@pin.id%>/edit">Edit Pin</a>
+    <a href="/pins/<%= pin.id%>/edit">Edit Pin</a><br>
 
 <% end %>
+<a href="/pins/new">Add a New Pin.</a><br>
+</div>

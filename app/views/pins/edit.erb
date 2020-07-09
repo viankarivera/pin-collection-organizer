@@ -1,0 +1,14 @@
+<form action="/pins/<%= pin.id %>" method="POST">
+<input type="hidden" id="hidden" name="_method" value="PUT">
+    <h4>Edit Pin:</h4><br>
+    
+    <label>Name:</label>
+        <input type="text" name="pin[name]" value="<%=@pin.name%>"><br>
+    <label>Artist:</label>
+        <input type="text" name="pin[artist]" value="<%=@pin.artist%>"><br>
+    <label>Series:</label>
+        <input type="text" name="pin[series]" value="<%=@pin.series%>"><br>
+    <label>Price:</label>
+        <input type="number" name="pin[price]" value="<%=@pin.price%>"><br>
+    <input type="submit" value="Finish Edit">
+</form>
