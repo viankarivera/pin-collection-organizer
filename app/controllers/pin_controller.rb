@@ -29,23 +29,30 @@ class PinController < ApplicationController
         erb :'pins/pins'
     end 
     
-    get '/pins/edit_pin' do #this needs to be restful and it is not yet
-        erb :'pins/edit_pin'
+    get '/pins/:id/edit_pin' do #this needs to be restful and it is not yet
+        @pin = Pin.find_by_id(params[:id])
+        erb :'pins/edit_pin' #is this right?
     end 
 
-    put '/pins/:id' do  #needs to redirect and udate or change database
-        erb :'pins/edit_pin'
+    put '/pins/:id' do #needs to redirect and udate or change database
+        @pin = Pin.find_by_id(params[:id])
+        @pin.update #what else?
+        if @pin.save 
+            redirect to '/pins'
+        else 
+            erb :'pins/edit_pin'
+        end 
     end 
 
 
     delete '/pins/:id' do 
-        @pin = Pin.find(params[:id])
-        user = @pin.user
+        @pin = Pin.find_by_id(params[:id])
+        user = @pin.user #i want this to be if current user is logged in and wants to delete THEIR pin
         if user == current_user
         @pin.destroy
         redirect to "/pins"
         else
-        redirect to "/pins"
+        redirect to "/pins/edit_pin" #?
         end
     end
 

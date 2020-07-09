@@ -1,8 +1,9 @@
 
+    <div>
     <h4><%= @user.username %>'s Collection:</h4><br>
 
     <% @pins.each do |pin| %>
-        Name: <%= pin.name %><br> #make a link to pins showpage - then that pages needs a link to edit and delete
+        Name: <%= pin.name %>  <a href="/pins/show">See Pin</a><br>
         Artist: <%= pin.artist %><br>
 
     <% end %>
@@ -12,8 +13,5 @@
     
     </div>
 
-    <a href="/new">Add a New Pin.</a>
+    <br><a href="/new">Add a New Pin.</a>
 
-
-
-#don't know how to write this out though....
