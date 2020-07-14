@@ -43,7 +43,7 @@ class UserController < ApplicationController
     end 
   end 
 
-    get '/users/:id' do
+    get '/user/:id' do
       #binding.pry
       @user = User.find_by_id(params[:id])
       @pins = @user.pins

@@ -5,8 +5,8 @@
     Price: <%= @pin.price %><br>
 
 
-    <form action ="/pins/<%= @pin.id%>/delete" method="POST">
-            <input type="hidden" id="hidden" name="_method" value="DELETE">
-            <button type="submit" value="delete">Trade Pin</button><br>
-        </form>
+    <form action ="/pins/<%= @pin.id%>" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
+        <button type="submit" value="delete">Trade Pin</button><br>
+     </form>
     <a href="/pins/<%= @pin.id %>/edit"><button type="submit" value="submit">Edit Pin</button></a><br>

@@ -54,16 +54,14 @@ class PinController < ApplicationController
     end 
 
 
-    delete '/pins/:id/delete' do 
-        @pin = Pin.find(params[:id])
-        user = @pin.user
-        if user == current_user
-            @pin.destroy
-            redirect to "/pins"
-        else
-            redirect to "/pins" 
-        end
-    end
+    delete '/pins/:id' do 
+       @pin = Pin.find(params[:id])
+       if current_user != @pin.user 
+        redirect to '/pins'
+       else
+        @pin.destroy
+       end 
+    end 
 
     
 
