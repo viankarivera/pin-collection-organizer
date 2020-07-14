@@ -34,11 +34,11 @@ class PinController < ApplicationController
         @pin = Pin.find_by_id(params[:id])
         if current_user != @pin.user 
             redirect to '/pins'
-        end #this needs to be restful and it is not yet
-        erb :'pins/edit' #is this right?
+        end
+        erb :'pins/edit'
     end 
 
-    put '/pins/:id' do #needs to redirect and udate or change database
+    put '/pins/:id' do
         @pin = Pin.find_by_id(params[:id])
 
         if current_user != @pin.user 

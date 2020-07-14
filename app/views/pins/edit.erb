@@ -1,6 +1,8 @@
-<form action="/pins/<%= pin.id %>" method="POST">
-<input type="hidden" id="hidden" name="_method" value="PUT">
-    <h4>Edit Pin:</h4><br>
+<h4>Edit Pin:</h4><br>
+
+<form action="/pins/<%= @pin.id %>" method="POST">
+<input type="hidden" name="_method" value="PUT">
+
     
     <label>Name:</label>
         <input type="text" name="pin[name]" value="<%=@pin.name%>"><br>

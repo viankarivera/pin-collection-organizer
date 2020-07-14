@@ -11,10 +11,12 @@
     <form action ="/pin/<%= pin.id%>/delete" method="POST">
         <input type="hidden" id="hidden" name="method" value="DELETE">
         <button type="submit" value="delete">Trade Pin</button><br>
-    </form>
 
-    <a href="/pins/<%= pin.id%>/edit">Edit Pin</a><br>
+        <a href="/pins/<%= pin.id%>/edit">Edit Pin</a><br>
+    </form><br>
+
+
 
 <% end %>
-<a href="/pins/new">Add a New Pin.</a><br>
+<a href="/pins/new"><h3>Add a New Pin.</h3></a><br>
 </div>
