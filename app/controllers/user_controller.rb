@@ -37,6 +37,7 @@ class UserController < ApplicationController
     @user = User.find_by_username(params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id 
+      #binding.pry
       redirect to '/pins'
     else
       redirect to '/login'

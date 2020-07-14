@@ -3,6 +3,7 @@ require './config/environment'
 class PinController < ApplicationController
 
     get '/pins' do
+        #binding.pry
         @pins = Pin.all
         erb :'pins/index'
     end 
@@ -23,23 +24,25 @@ class PinController < ApplicationController
 
 
         #responsible for creating pins
-        redirect to "/users/#{current_user.id}"
+        redirect to "/user/#{current_user.id}"
     end 
 
     get '/pins/:id' do 
         @pin = Pin.find(params[:id])
-        erb :'pins/edit'
+        erb :'pins/show'
     end 
     
     get '/pins/:id/edit' do 
-        @pin = Pin.find(params[:id])
+        #binding.pry
+        @pin = Pin.find_by_id(params[:id])
+        #binding.pry
         if current_user != @pin.user 
             redirect to '/pins'
         end
         erb :'pins/edit'
     end 
 
-    put '/pins/:id/edit' do
+    put '/pins/:id' do
         @pin = Pin.find(params[:id])
 
         if current_user != @pin.user 
@@ -49,18 +52,21 @@ class PinController < ApplicationController
         if @pin.save 
             redirect to '/pins'
         else 
-            erb :'pins/edit'
+            erb :'pins/show'
         end 
     end 
 
 
     delete '/pins/:id' do 
+        #binding.pry
        @pin = Pin.find(params[:id])
        if current_user != @pin.user 
         redirect to '/pins'
        else
         @pin.destroy
+        redirect to '/pins'
        end 
+    
     end 
 
     

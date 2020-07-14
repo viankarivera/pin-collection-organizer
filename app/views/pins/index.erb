@@ -9,7 +9,7 @@
     Series: <%= pin.series %><br>
     Price: <%= pin.price %><br>
 
-    <form action ="/pin/<%= pin.id%>" method="POST">
+    <form action ="/pins/<%= pin.id%>" method="POST">
         <input type="hidden" id="hidden" name="_method" value="DELETE">
         <button type="submit" value="delete">Trade Pin</button><br>
 
