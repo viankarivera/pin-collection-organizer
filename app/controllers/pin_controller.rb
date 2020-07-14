@@ -10,8 +10,9 @@ class PinController < ApplicationController
     get '/pins/new' do 
         if !is_logged_in?
             redirect to '/login'
-        end
-        erb :"/pins/new"
+        else
+            erb :"/pins/new"
+        end 
          
     end 
 
@@ -27,19 +28,19 @@ class PinController < ApplicationController
 
     get '/pins/:id' do 
         @pin = Pin.find(params[:id])
-        erb :'pins/show'
+        erb :'pins/edit'
     end 
     
     get '/pins/:id/edit' do 
-        @pin = Pin.find_by_id(params[:id])
+        @pin = Pin.find(params[:id])
         if current_user != @pin.user 
             redirect to '/pins'
         end
         erb :'pins/edit'
     end 
 
-    put '/pins/:id' do
-        @pin = Pin.find_by_id(params[:id])
+    put '/pins/:id/edit' do
+        @pin = Pin.find(params[:id])
 
         if current_user != @pin.user 
             redirect to '/pins'
@@ -53,9 +54,9 @@ class PinController < ApplicationController
     end 
 
 
-    delete '/pins/:id' do 
-        @pin = Pin.find_by_id(params[:id])
-        user = @pin.user #i want this to be if current user is logged in and wants to delete THEIR pin
+    delete '/pins/:id/delete' do 
+        @pin = Pin.find(params[:id])
+        user = @pin.user
         if user == current_user
             @pin.destroy
             redirect to "/pins"

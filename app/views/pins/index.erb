@@ -1,7 +1,7 @@
 <div class="pin collection">
 <h4>Pins:</h4><br>
 
-<% @pins.each do |pin| %>
+<% @pins.each do |pin| %><br>
 
     Name: <%= pin.name %><br>
     Artist: <%= pin.artist %><br>
@@ -9,11 +9,12 @@
     Price: <%= pin.price %><br>
 
     <form action ="/pin/<%= pin.id%>/delete" method="POST">
-        <input type="hidden" id="hidden" name="method" value="DELETE">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
         <button type="submit" value="delete">Trade Pin</button><br>
 
-        <a href="/pins/<%= pin.id%>/edit">Edit Pin</a><br>
     </form><br>
+
+    <a href="/pins/<%= pin.id %>/edit">Edit Pin</a><br>
 
 
 
